@@ -1,0 +1,29 @@
+version: '3'
+services:
+  miniprogram:
+    build: ./app
+    container_name: miniProgram-FastAPI
+    environment:
+      - TZ=Asia/Shanghai
+    ports: 
+      - "8001:15400"
+    volumes: 
+      - ./app/:/app     #挂载 方便开发
+    links:
+      - db
+    depends_on:
+      - db
+    command:
+      ["uvicorn","main:app","--reload","--host","0.0.0.0","--port","15400"] #--reload 方便开发
+  db:
+    image: postgres:latest
+    container_name: miniProgram-postgres
+    privileged: true #解决权限
+    environment:
+      #POSTGRES_PORT: 5431
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpw
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/postgresql-docker/data:/var/lib/postgresql/data
