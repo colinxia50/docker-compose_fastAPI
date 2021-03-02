@@ -1,4 +1,4 @@
-## 使用wls2+docker-compose+vsCode创建的python开发环境 
+## 使用WSL2+docker-compose+vsCode创建的python开发环境 
   示例代码是使用fastAPI搭配postgreSQL ORM构建的入门示例接口,
   
   实现简单用户接口、文件上传，接口详情部署完成后查看
